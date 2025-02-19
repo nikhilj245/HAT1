@@ -1,0 +1,46 @@
+28/11/2024
+- created the HAT1 repository and set up the codespace.
+
+3/02/2024
+- import flask module and JWT, completed directory setup/structure
+
+5/02/2024
+- finished creating database structure, added user and catalogue tables and fields within them.
+
+11/02/2024
+- created basic html structure for most webpages, basic css styling, created login.html, signup.html, catalogue.html, index.html, contact.html
+- imported a few extra modules, added slightly more security checks to signup and login, tried to implement JWT token grantin unsuccessfully.
+- finalised storyboard
+
+12/02/2024
+- Added password hashing and fixed multiple bugs
+- fixed JWT token problems by storing in cookies, but still needs some work
+
+13/02/2024
+- Added javascript logic to html pages to control what displays in the navigation bar based off token status
+- changed th HTML format to make it cleaner and more efficient/useful.
+- Did major fixes to JWT cookie storing and accessing, it is much better now
+- Added email verification for people signing up
+
+16/02/2024
+-  major security fixes for sign up and log in pages
+- started storing sensitive information in environment variables
+- added rate limits to prevent spamming
+- fixed email verification logic.
+- logged in users are now saved and stored securely in the database
+- signup backend secuity added to prevent html editing from crashing website if people were to use the inspect tool and edit the HTML content
+- added basic images and logo to the catalogue, styled the catalogue to make it look more like cards
+- added error logging, error messages, and errors can be displayed to users in a user-friendly way (it will pop up as red text below the sign in or signup page if they incorrectly input something)
+- added CSRF security.
+
+18/02/2024
+- rate limits and redis was causing some problems so I got rid of it
+- created a new decorator to check if users do not have tokens.
+- added more security checks for login submissions as well as error logging, same with the signup page.
+- making certain endpoints require JWT tokens
+- fixed the pictures in catalogue.html so that they are not cropped, but are resized to fit into the cards
+- disabling multiple submissions to be sent while page is loading through javascript.
+- using regex to prevent users from entering invalid characters which could harm the database or server.
+- created directory structure diagram with ASCII called DirectoryStructure.png
+
+
