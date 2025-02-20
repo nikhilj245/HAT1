@@ -219,46 +219,6 @@ def bookCatalogue():
 def contact():
     return render_template('contact.html')
 
-@app.route('/ForgotPassword', methods=['GET', 'POST'])
-@jwt_optional_only
-def ForgotPassword():
-    if request.method=="POST":
-        email = request.form.get('email', '').strip()
-        if not email or '@' not in email or '.' not in email:
-            logging.warning(f"SignUp failed: Email '{email}' is invalid")
-            return render_template('ForgotPassword.html', error="Invalid email address, either it is too long or the syntax is incorrect.")
-        if EmailCheck(email) is None:
-            logging.warning(f"Forgot Password failed: no such email exists")
-            return render_template('ForgotPassword.html', error="Email does not exist.")
-        emailCode = str(random.randint(1000, 1000000))
-        SendMail(email, "Forgot Password Code", str(emailCode))
-        return redirect(url_for('EmailVerificationCode', email=email, username=None, hashed_password=None, code=PasswordHash(emailCode)))
-    return render_template('ForgotPassword.html')
-
-@app.route('/ResetPassword', methods=['GET', 'POST'])
-@jwt_required(locations=['cookies'])
-def ResetPassword():
-    if request.method=="POST":
-        password = request.form.get('password', '').strip()
-        checkPassword = request.form.get('re-enter passwor', '').strip()
-        if not is_valid_input(password) or not is_valid_input(checkPassword):
-            logging.warning(f"Reset Password failed: Invalid characters in password")
-            return render_template('ResetPassword.html', error="Invalid characters in password.")
-        if not PasswordCheck(password):
-            logging.warning(f"Reset Password failed: Password is invalid")
-            return render_template('ResetPassword.html', error="Password must be at least 8 characters and contain a digit, an uppercase letter, and a special character.")
-        if password != checkPassword:
-            logging.warning(f"Reset Password failed: Passwords do not match")
-            return render_template('ResetPassword.html', error="Passwords do not match.")
-        password_hashed = PasswordHash(password)
-        username = get_jwt_identity
-        with sqlite3.connect('database/database.db') as conn:
-            cursor = conn.cursor()
-            cursor.execute("""Update users set password = (?) where username = (?)""", (password_hashed, username.lower()))
-            conn.commit()
-            return render_template('index.html', cataloguedata=cursor.fetchall())
-    return render_template('ResetPassword.html')
-
 @app.route('/signout')
 def signout():
     response = make_response(render_template("index.html"))
