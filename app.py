@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response, redirect, url_for, jsonify
+from flask import Flask, render_template, request, make_response, redirect, url_for, jsonify, session
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, verify_jwt_in_request
 from flask_wtf.csrf import CSRFProtect
 from functools import wraps
@@ -13,6 +13,7 @@ import random
 import bcrypt
 import logging
 import re
+import json
 
 
 app = Flask(__name__)
@@ -23,23 +24,7 @@ csrf = CSRFProtect(app)
 logging.basicConfig(level=logging.INFO) 
 load_dotenv()
 
-"""
-connection = sqlite3.connect('/workspaces/HAT1/database/database.db')
-cursor = connection.cursor()
-cursor.execute("INSERT INTO catalogue VALUES (?, ?, ?)", ("book1", "images/image.png", "blurb",)) 
-connection.commit()
-connection.close()
 
-"""
-
-"""
-connection = sqlite3.connect('/workspaces/HAT1/database/database.db')
-cursor = connection.cursor()
-cursor.execute("DELETE FROM users")
-connection.commit()
-connection.close()
-
-"""
 def jwt_optional_only(fn):
     @wraps(fn)
     def wrapper(*args, **kwargs):
@@ -76,31 +61,46 @@ def SendMail(recipient, title, content):
 @jwt_optional_only
 def EmailVerificationCode():
     if request.method == 'GET':
-        username = request.args.get("username")  
-        email = request.args.get("email")  
-        hashed_password = request.args.get("hashed_password")
-        emailCode = request.args.get("code")
-        return render_template("emailverify.html",
-                               email=email,
-                               username=username,
-                               hashed_password=hashed_password,
-                               code=emailCode)
-    else: 
-        username = request.form.get("username")
-        email = request.form.get("email")
-        hashed_password = request.form.get("hashed_password")
-        generated_code = request.form.get("generated_code")
+        username = session.get("username")
+        email = session.get("email")
+        hashed_password = session.get("hashed_password")
+        emailCodeHashed = session.get("email_code")
+
+        if not username or not email or not hashed_password or not emailCodeHashed:
+            logging.warning("Signup failed: Incomplete fields")
+            return redirect(url_for('signup'))
+
+        return render_template("emailverify.html")
+
+    else:
         entered_code = request.form.get("email code")
-        
-        if  PasswordCompare(generated_code, entered_code) == True:
+        emailCodeHashed = session.get("email_code")
+
+        if not emailCodeHashed or not entered_code:
+            logging.warning(f"Signup Failed: session expired")
+            return redirect(url_for('signup'))
+
+        if PasswordCompare(emailCodeHashed, entered_code):
+            username = session.get("username")
+            email = session.get("email")
+            hashed_password = session.get("hashed_password")
+
             AddUser(username, email, hashed_password)
+
             access_token = create_access_token(identity=username)
             response = make_response(redirect(url_for('home')))
-            response.set_cookie('access_token_cookie', access_token, secure=True, samesite='Strict') 
+            response.set_cookie('access_token_cookie', access_token, secure=True, samesite='Strict')
+
+            session.pop("username", None)
+            session.pop("email", None)
+            session.pop("hashed_password", None)
+            session.pop("email_code", None)
+
             return response
         else:
-            logging.warning(f"Email verification failed: Incorrect verification code for user '{username}'")
-            return render_template("index.html", error="Incorrect verification code")
+            logging.warning(f"Signup failed: Incorrect verification code")
+            return render_template("emailverify.html")
+
 
 
 def UserNameCheck(user):
@@ -177,32 +177,41 @@ def signup():
         email = request.form.get('email', '').strip()
         password = request.form.get('password', '').strip()
         checkPassword = request.form.get('re-enter password', '').strip()
+
         if not username or len(username) < 5 or len(username) > 20:
-            logging.warning(f"SignUp failed: Username '{username}' is too short")
-            return render_template('signup.html', error="Username must be at least 5 characters long, or username is too long.")
-        if not is_valid_input(username) or not is_valid_input(email) or not is_valid_input(password) or not is_valid_input(checkPassword):
-            logging.warning(f"SignUp failed: Invalid characters in username, email, or password")
-            return render_template('signup.html', error="Invalid characters in username, email, or password.")
+            return render_template('signup.html', error="Username must be between 5 and 20 characters.")
+
+        if not is_valid_input(username) or not is_valid_input(email) or not is_valid_input(password):
+            return render_template('signup.html', error="Invalid characters in input.")
+
         if not email or '@' not in email or '.' not in email:
-            logging.warning(f"SignUp failed: Email '{email}' is invalid")
-            return render_template('signup.html', error="Invalid email address, incorrect syntax.")
+            return render_template('signup.html', error="Invalid email address.")
+
         if not PasswordCheck(password):
-            logging.warning(f"SignUp failed: Password is invalid for user: '{username}'")
-            return render_template('signup.html', error="Password must be at least 8 characters and contain a digit, an uppercase letter, and a special character.")
+            return render_template('signup.html', error="Weak password: Use at least 8 characters, a digit, and a special character.")
+
         if password != checkPassword:
-            logging.warning(f"SignUp failed: Passwords do not match for user: '{username}'")
             return render_template('signup.html', error="Passwords do not match.")
+
         if UserNameCheck(username) is not None:
-            logging.warning(f"SignUp failed: Username '{username}' is already taken")
-            return render_template('signup.html', error="Username is already taken.")
+            return render_template('signup.html', error="Username already taken.")
+
         if EmailCheck(email) is not None:
-            logging.warning(f"SignUp failed: Email '{email}' is already registered")
-            return render_template('signup.html', error="Email is already registered.")
+            return render_template('signup.html', error="Email already registered.")
 
         password_hashed = PasswordHash(password)
         emailCode = str(random.randint(1000, 1000000))
+        emailCodeHashed = PasswordHash(emailCode)  # Hash the code before storing
+
+        # Store username, password, and hashed code in session (or temporary database)
+        session['username'] = username
+        session['email'] = email
+        session['hashed_password'] = password_hashed
+        session['email_code'] = emailCodeHashed
+
         SendMail(email, "Library activation code", str(emailCode))
-        return redirect(url_for('EmailVerificationCode', email=email, username=username, hashed_password=password_hashed, code=PasswordHash(emailCode)))
+        return redirect(url_for('EmailVerificationCode'))
+
     return render_template('signup.html')
 
 @app.route('/bookCatalogue', methods=['GET', 'POST'])

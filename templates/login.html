@@ -34,11 +34,6 @@
             {% endfor %}
         {% endwith %}
     </form>
-    <script>
-        function disableButton()
-        {
-            document.getElementById("submitBTN").disabled = true;
-        }
-    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

@@ -10,18 +10,9 @@
   <h2>Verify Email</h2>
   <form action="{{ url_for('EmailVerificationCode') }}" method="POST" onsubmit="disableButton()">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <input type="hidden" name="generated_code" value="{{ code }}">
-    <input type="hidden" name="email" value="{{ email }}">
-    <input type="hidden" name="username" value="{{ username }}">
-    <input type="hidden" name="hashed_password" value="{{ hashed_password }}">
-    <p>Email Code: <input type="text" name="email code" required /></p>
+    <p><input type="text" placeholder="Email Code" name="email code" required /></p>
     <p><input type="submit" value="Verify Email" id="submitBTN"/></p>
   </form>
-  <script>
-    function disableButton()
-    {
-        document.getElementById("submitBTN").disabled = true;
-    }
-  </script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
