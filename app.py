@@ -17,6 +17,7 @@ import re
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['JWT_COOKIE_CSRF_PROTECT'] = False
 jwt = JWTManager(app)
 logging.basicConfig(level=logging.INFO) 
 load_dotenv()
@@ -216,14 +217,22 @@ def signup():
 def bookCatalogue():
     if UserNameCheck(get_jwt_identity()) is None:
         return redirect(url_for('home'))
+    new_values = []
+    genres = []
     if request.method == 'POST':
-        new_values = request.form.get('genre', '')
-        print(f"Hello {new_values[0]} AND {new_values[1]}")
-    with sqlite3.connect('database/database.db') as conn:
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM catalogue")
-        book=cursor.fetchall()
-        genres = []
+        new_values = request.form.getlist('genre')
+    if not new_values:
+        with sqlite3.connect('database/database.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM catalogue")
+            book=cursor.fetchall()
+    else:
+        with sqlite3.connect('database/database.db') as conn:
+            cursor = conn.cursor()
+            query = "SELECT * FROM catalogue WHERE " + " OR ".join(["genre LIKE ?" for _ in new_values])
+            params = [f"%{genre}%" for genre in new_values]
+            cursor.execute(query, params)
+            book=cursor.fetchall()
     for i in range(len(book)):
         genres.append(book[i][5])
     return render_template('catalogue.html', cataloguedata=book, genres=genres)

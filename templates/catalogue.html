@@ -8,29 +8,20 @@
 </head>
 <body>
 
+
     <nav>
         <ul>
-            <img src="{{url_for('static', filename='images/logo.png')}}" alt="logo", width="50", height="50", justify_content="center">
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('bookCatalogue') }}">Book Catalogue</a></li>
             <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
             <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
         </ul>
     </nav>
-<!--
-    <button class="btn btn-primary" onclick="toggleSidebar()">Filter</button>
-    <div id="sidebar" class="sidebar">
-        <form method="POST" action="{{ url_for('bookCatalogue') }}">
-            {% for genre in genres %}
-                <input type="checkbox" name="genre" value="{{ genre }}"
-                    {% if genre in selected_genres %} checked {% endif %}>
-                {{ genre }}<br>
-            {% endfor %}
-            <button type="submit">Apply</button>
-        </form>
+
+    <div class="header-container">
+        <button class="btn btn-primary" onclick="toggleSidebar()">Filter</button>
     </div>
--->
-    <button class="btn btn-primary" onclick="toggleSidebar()">Filter</button>
+
     <div id="sidebar" class="sidebar">
         <form method="POST" action="{{ url_for('bookCatalogue') }}">
             <input type="checkbox" name="genre" value="Graphic" {% if "Graphic" in selected_genres %} checked {% endif %}> Graphic<br>
@@ -52,13 +43,12 @@
         </form>
     </div>
 
-
-<script>
+    <script>
     function toggleSidebar() {
-        let sidebar = document.getElementById("sidebar");
-        sidebar.style.display = (sidebar.style.display === "none") ? "block" : "none";
+        var sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle('active');
     }
-</script>
+    </script>
 
     {% extends "layout.html" %}
     {% block content %}

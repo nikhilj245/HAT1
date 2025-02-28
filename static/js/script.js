@@ -22,4 +22,5 @@ function cookiecheck() {
         document.getElementById("cookie").style.display = "block";
     }
 }
+
 document.addEventListener("DOMContentLoaded", cookiecheck());

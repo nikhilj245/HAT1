@@ -1,4 +1,5 @@
 /* For navigation bar and general body styling */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -163,3 +164,40 @@ button:hover{
     flex: 1; 
     text-align: left;
   }
+
+
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the title */
+    position: relative;
+}
+
+.header-container .btn {
+    width: 300px;
+    left: 100px;
+    top: 5px;
+    position: absolute;
+}
+
+h1 {
+    text-align: center;
+    flex-grow: 1; /* Ensures it remains centered */
+}
+
+.sidebar {
+    width: 300px; /* Adjust width */
+    position: absolute;
+    top: 90px; /* Adjust based on title position */
+    left: 100px;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+}
+
+.sidebar.active {
+    display: block;
+}
