@@ -17,6 +17,48 @@
             <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
         </ul>
     </nav>
+<!--
+    <button class="btn btn-primary" onclick="toggleSidebar()">Filter</button>
+    <div id="sidebar" class="sidebar">
+        <form method="POST" action="{{ url_for('bookCatalogue') }}">
+            {% for genre in genres %}
+                <input type="checkbox" name="genre" value="{{ genre }}"
+                    {% if genre in selected_genres %} checked {% endif %}>
+                {{ genre }}<br>
+            {% endfor %}
+            <button type="submit">Apply</button>
+        </form>
+    </div>
+-->
+    <button class="btn btn-primary" onclick="toggleSidebar()">Filter</button>
+    <div id="sidebar" class="sidebar">
+        <form method="POST" action="{{ url_for('bookCatalogue') }}">
+            <input type="checkbox" name="genre" value="Graphic" {% if "Graphic" in selected_genres %} checked {% endif %}> Graphic<br>
+            <input type="checkbox" name="genre" value="Gothic" {% if "Gothic" in selected_genres %} checked {% endif %}> Gothic<br>
+            <input type="checkbox" name="genre" value="Fiction" {% if "Fiction" in selected_genres %} checked {% endif %}> Fiction<br>
+            <input type="checkbox" name="genre" value="Tragedy" {% if "Tragedy" in selected_genres %} checked {% endif %}> Tragedy<br>
+            <input type="checkbox" name="genre" value="Philosophical" {% if "Philosophical" in selected_genres %} checked {% endif %}> Philosophical<br>
+            <input type="checkbox" name="genre" value="Autobiography" {% if "Autobiography" in selected_genres %} checked {% endif %}> Autobiography<br>
+            <input type="checkbox" name="genre" value="Magical" {% if "Magical" in selected_genres %} checked {% endif %}> Magical<br>
+            <input type="checkbox" name="genre" value="Realistic" {% if "Realistic" in selected_genres %} checked {% endif %}> Realistic<br>
+            <input type="checkbox" name="genre" value="Science-Fiction" {% if "Science-Fiction" in selected_genres %} checked {% endif %}> Science-Fiction<br>
+            <input type="checkbox" name="genre" value="Dystopian" {% if "Dystopian" in selected_genres %} checked {% endif %}> Dystopian<br>
+            <input type="checkbox" name="genre" value="Comedy" {% if "Comedy" in selected_genres %} checked {% endif %}> Comedy<br>
+            <input type="checkbox" name="genre" value="Romance" {% if "Romance" in selected_genres %} checked {% endif %}> Romance<br>
+            <input type="checkbox" name="genre" value="Psychological" {% if "Psychological" in selected_genres %} checked {% endif %}> Psychological<br>
+            <input type="checkbox" name="genre" value="War" {% if "War" in selected_genres %} checked {% endif %}> War<br>
+            <input type="checkbox" name="genre" value="Historical" {% if "Historical" in selected_genres %} checked {% endif %}> Historical<br>
+            <button type="submit">Apply</button>
+        </form>
+    </div>
+
+
+<script>
+    function toggleSidebar() {
+        let sidebar = document.getElementById("sidebar");
+        sidebar.style.display = (sidebar.style.display === "none") ? "block" : "none";
+    }
+</script>
 
     {% extends "layout.html" %}
     {% block content %}
@@ -34,7 +76,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ row[1] }}</h5>
                             <p class="card-text">Author: {{ row[4] }}</p>
-                            <a href="{{ row[3] }}" target="_blank" class="btn btn-primary">More Information</a>
+                            <a href="{{ url_for('bookInfo', isbn=row[0]) }}" target="_blank" class="btn btn-primary">More Information</a>
                         </div>
                     </div>
                 </div>
@@ -43,6 +85,8 @@
         </div>
     </div>
     {%endblock%}
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </body>
 </html>
-

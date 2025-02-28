@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>Book Information</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    
+
     <nav>
         <ul>
             <div id="nocookie" style="display: none;">
@@ -30,10 +30,19 @@
         </ul>
     </nav>
 
-
-    <h2>Contact Us</h2>
-    <p>Email: libraryman752@gmail.com</p>
-    <p>Phone: +123 456 7890</p>
+    <h2>Book Info</h2>
+    <div class="container1">
+        <img src="{{ url_for('static', filename=image) }}" alt="{{ title }}">
+        <div class="content">
+            <p>ISBN: {{ isbn }}</p>
+            <p>Title: {{ title }}</p>
+            <p>Description: {{ description }}</p>
+            <p>Author: {{ author }}</p>
+            <p>Genre: {{ genre }}</p>
+            <p>Rating: {{ rating }}</p>
+            <p>Publication Year: {{ publication_year }}</p>
+        </div>
+    </div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 

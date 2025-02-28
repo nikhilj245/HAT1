@@ -5,14 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verify Email</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 </head>
-<body>
-  <h2>Verify Email</h2>
-  <form action="{{ url_for('EmailVerificationCode') }}" method="POST" onsubmit="disableButton()">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+<body class="dark-mode">
+
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <form class="login" action="{{ url_for('EmailVerificationCode') }}" method="POST" onsubmit="disableButton()">
+    <h3>Verify Email</h3>
     <p><input type="text" placeholder="Email Code" name="email code" required /></p>
     <p><input type="submit" value="Verify Email" id="submitBTN"/></p>
   </form>
+
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  
 </body>
 </html>

@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for, jsonify, session
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, verify_jwt_in_request
-from flask_wtf.csrf import CSRFProtect
 from functools import wraps
 import sqlite3
 from dotenv import load_dotenv
@@ -13,14 +12,12 @@ import random
 import bcrypt
 import logging
 import re
-import json
 
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 jwt = JWTManager(app)
-csrf = CSRFProtect(app)
 logging.basicConfig(level=logging.INFO) 
 load_dotenv()
 
@@ -219,10 +216,29 @@ def signup():
 def bookCatalogue():
     if UserNameCheck(get_jwt_identity()) is None:
         return redirect(url_for('home'))
+    if request.method == 'POST':
+        new_values = request.form.get('genre', '')
+        print(f"Hello {new_values[0]} AND {new_values[1]}")
     with sqlite3.connect('database/database.db') as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM catalogue")
-        return render_template('catalogue.html', cataloguedata=cursor.fetchall())
+        book=cursor.fetchall()
+        genres = []
+    for i in range(len(book)):
+        genres.append(book[i][5])
+    return render_template('catalogue.html', cataloguedata=book, genres=genres)
+
+@app.route('/bookInfo', methods=['GET', 'POST'])
+@jwt_required(locations=['cookies'])
+def bookInfo():
+    if UserNameCheck(get_jwt_identity()) is None:
+        return redirect(url_for('home'))
+    isbn = request.args.get('isbn')
+    with sqlite3.connect('database/database.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM catalogue WHERE isbn = ?", (isbn,))
+        bookdata=cursor.fetchone()
+    return render_template('bookInfo.html', isbn=bookdata[0], title=bookdata[1], image=bookdata[2], description=bookdata[3], author=bookdata[4], genre=bookdata[5], rating=bookdata[6], publication_year=bookdata[7])
 
 @app.route('/contact')
 def contact():
