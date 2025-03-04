@@ -14,6 +14,7 @@
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('bookCatalogue') }}">Book Catalogue</a></li>
             <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+            <li><a href="{{ url_for('settings') }}">Settings</a></li>
             <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
         </ul>
     </nav>
@@ -43,12 +44,7 @@
         </form>
     </div>
 
-    <script>
-    function toggleSidebar() {
-        var sidebar = document.getElementById("sidebar");
-        sidebar.classList.toggle('active');
-    }
-    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
     {% extends "layout.html" %}
     {% block content %}

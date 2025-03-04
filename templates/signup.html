@@ -6,12 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 </head>
+<body>
 
-<body class="dark-mode">
+    <script>
+        function applySettings() {
+        if (localStorage.getItem("lightMode") === "enabled") {
+            document.body.classList.add("light-modestorage");
+            document.body.classList.remove("dark-modestorage");
+            document.body.className = "light-modestorage";
+        } else {
+            document.body.classList.add("dark-modestorage");
+            document.body.classList.remove("light-modestorage");
+            document.body.className = "dark-modestorage";
+
+        }
+        }
+        applySettings();
+    </script>
 
     <nav>
         <ul>
@@ -19,6 +31,7 @@
             <li><a href="{{ url_for('login') }}">Log In</a></li>
             <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
             <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+            <li><a href="{{ url_for('settings') }}">Settings</a></li>
         </ul>
     </nav>
 
@@ -39,7 +52,6 @@
         {% endif %}
     </form>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 </html>

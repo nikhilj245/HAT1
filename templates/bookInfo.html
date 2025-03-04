@@ -10,25 +10,14 @@
 
     <nav>
         <ul>
-            <div id="nocookie" style="display: none;">
-                <ul>
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('login') }}">Log In</a></li>
-                    <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
-                </ul>
-            </div>
-
-            <div id="cookie" style="display: none;">
-                <ul>
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('bookCatalogue') }}">Book Catalogue</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
-                    <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
-                </ul>
-            </div>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('bookCatalogue') }}">Book Catalogue</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+            <li><a href="{{ url_for('settings') }}">Settings</a></li>
+            <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
         </ul>
     </nav>
+
 
     <h2>Book Info</h2>
     <div class="container1">
@@ -44,7 +33,6 @@
         </div>
     </div>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 </html>

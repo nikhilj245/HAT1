@@ -1,3 +1,21 @@
+.light-modestorage{
+    --bg-color: white;
+    --text-color: black;
+    --darkmode-bg-color: white;
+    --signup-bg-color: white;
+    --login-bg-color: white;
+}
+
+.dark-modestorage{
+    --bg-color: black;
+    --text-color: white;
+    --darkmode-bg-color: black;
+    --signup-bg-color: rgba(255, 255, 255, 0.13);
+    --login-bg-color: rgba(255, 255, 255, 0.13);
+}
+
+
+
 /* For navigation bar and general body styling */
 
 body {
@@ -5,10 +23,13 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    background-color: var(--bg-color); 
+    color: var(--text-color);
 }
 
+
 nav {
-    background-color: #333;
+    background-color: #333; /*change this*/
     padding: 10px 0;
 }
 
@@ -25,16 +46,15 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: white; /*change this*/
     text-decoration: none;
     font-size: 18px;
 }
 
 nav ul li a:hover {
-    /*text-decoration: underline;*/
-    background-color: blue;
+    background-color: blue; /*change this*/
     font-size: 18px;
-    color: black;
+    color: black; /*change this*/
 }
 
 
@@ -46,9 +66,7 @@ nav ul li a:hover {
     margin: 0;
     box-sizing: border-box;
 }
-body.dark-mode{
-    background-color: #080710;
-}
+
 .background{
     width: 430px;
     height: 520px;
@@ -83,7 +101,7 @@ body.dark-mode{
 form.signup{
     height: 530px;
     width: 400px;
-    background-color: rgba(255,255,255,0.13);
+    background-color: var(--signup-bg-color); 
     position: absolute;
     transform: translate(-50%,-50%);
     top: 55%;
@@ -97,7 +115,7 @@ form.signup{
 form.login{
     height: 380px;
     width: 400px;
-    background-color: rgba(255,255,255,0.13);
+    background-color: var(--login-bg-color); /*change this*/
     position: absolute;
     transform: translate(-50%,-50%);
     top: 55%;
@@ -108,13 +126,7 @@ form.login{
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
 }
-form *{
-    font-family: 'Poppins',sans-serif;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-}
+
 form h3{
     transform: translate(0%, -30%);
     font-size: 32px;
@@ -191,8 +203,8 @@ h1 {
     position: absolute;
     top: 90px; /* Adjust based on title position */
     left: 100px;
-    background: #f4f4f4;
     padding: 10px;
+    background: #f4f4f4;
     border-radius: 5px;
     display: none;
     z-index: 1000;
