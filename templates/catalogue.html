@@ -8,6 +8,21 @@
 </head>
 <body>
 
+    <script>
+        function applySettings() {
+        if (localStorage.getItem("lightMode") === "enabled") {
+            document.body.classList.add("light-modestorage");
+            document.body.classList.remove("dark-modestorage");
+            document.body.className = "light-modestorage";
+        } else {
+            document.body.classList.add("dark-modestorage");
+            document.body.classList.remove("light-modestorage");
+            document.body.className = "dark-modestorage";
+    
+        }
+        }
+        applySettings();
+    </script>
 
     <nav>
         <ul>
@@ -45,32 +60,17 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-    {% extends "layout.html" %}
-    {% block content %}
+    
+    <h1>Book Catalogue</h1>
     <div class="container">
-        <h2 class="text-center mb-4">Book Catalogue</h2>
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-            {% for row in cataloguedata %}
-            <div class="col d-flex justify-content-center">
-                <div class="card" style="width: 250px; height: 370px;">
-                    <div class="card card-front h-100 shadow-sm">
-                        <img src="{{ url_for('static', filename=row[2]) }}"
-                            class="card-img-top"
-                            alt="{{ row[1] }}"
-                            style="height: 200px; object-fit: contain;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ row[1] }}</h5>
-                            <p class="card-text">Author: {{ row[4] }}</p>
-                            <a href="{{ url_for('bookInfo', isbn=row[0]) }}" target="_blank" class="btn btn-primary">More Information</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+    {% for row in cataloguedata %}
+    <div style="overflow: hidden;">
+        <h7>{{row[1]}}</h7>
+        <div class="imgcontainer"><img src="{{ url_for('static', filename=row[2]) }}" style="width: 280px;"></div>
+        <a class="MoreInfoButton" style="bottom: 0;" href="{{ url_for('bookInfo', isbn=row[0]) }}" target="_blank">More Information</a>
     </div>
-    {%endblock%}
+    {% endfor %}
+</div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 

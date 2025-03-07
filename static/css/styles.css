@@ -28,6 +28,10 @@ body {
 }
 
 
+
+
+
+
 nav {
     background-color: #333; /*change this*/
     padding: 10px 0;
@@ -188,8 +192,9 @@ button:hover{
 
 .header-container .btn {
     width: 300px;
+    height: 40px;
     left: 100px;
-    top: 5px;
+    top: -30px;
     position: absolute;
 }
 
@@ -204,12 +209,51 @@ h1 {
     top: 90px; /* Adjust based on title position */
     left: 100px;
     padding: 10px;
-    background: #f4f4f4;
+    background: var(--bg-color);
+    color: green;
     border-radius: 5px;
     display: none;
     z-index: 1000;
 }
 
+
+
 .sidebar.active {
     display: block;
+}
+
+
+
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: var(--bg-color); /*change*/
+    padding: 10px;
+}
+
+.container > div {
+    background-color: var(--signup-bg-color); /*change*/
+    border: 1px solid black;
+    margin: 20px;
+    font-size: 30px;
+    text-align: center;
+    width: 265px;
+    height: 565px;
+}
+
+.MoreInfoButton{
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.MoreInfoButton:hover{
+    background-color: red;
+}
+
+.imgcontainer {
+    height: 400px;
+    overflow: hidden;
 }
