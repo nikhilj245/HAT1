@@ -43,4 +43,74 @@
 - using regex to prevent users from entering invalid characters which could harm the database or server.
 - created directory structure diagram with ASCII called DirectoryStructure.png
 
+9/03/2025
+- Removed CSRF protection as it was causing many problems
+- removed the Contact us page and merged it into the home page
+- Added a settings page which allows for dark and light mode.
+- Major changes to CSS styling making all html pages look much better.
+- Re-formatted the python code using 'Black' which is a python code formatter.
+- Needed to add javascript logic to check session storage (whether its in dark or light mode).
+- Added comments to python and css code as well as some references.
+- Edited DirectoryStructure.png since there have been changes in file structure.
+- Edited Storyboard.png to better represent what my website looks like.
+
+-------REFERENCES-------
+PYTHON REFERENCES:
+    How I created decorators: https://www.freecodecamp.org/news/python-decorators-explained-with-examples/
+    How I learnt regex: https://www.w3schools.com/python/python_regex.asp
+    How I learnt to send email through gmail smtp server: https://realpython.com/python-send-email/
+    How I learnt to hash with bcrypt: https://www.geeksforgeeks.org/hashing-passwords-in-python-with-bcrypt/
+    How I learnt to store and retrieve JWT tokens from cookies: https://flask-jwt-extended.readthedocs.io/en/3.0.0_release/tokens_in_cookies/
+BOOK INFORMATION:
+    Where I got the book titles, descriptions, authors, genres, publication year: https://thegreatestbooks.org/books/38
+    Where I got book ISBN numbers: https://www.penguinrandomhouse.com/
+    Where I got book ratings: https://www.goodreads.com/?ref=nav_hom
+BOOK IMAGES:
+    1984: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.ebay.com.au%2Fitm%2F265439442716&psig=AOvVaw3NSzbakZ2HZsMM34KM1A83&ust=1741583203117000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNDyu5Kd_IsDFQAAAAAdAAAAABAE
+    Alice's adventures in wonderland: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.simonandschuster.com.au%2Fbooks%2FAlices-Adventures-in-Wonderland%2FLewis-Carroll%2FAladdin-Classics%2F9781665925778&psig=AOvVaw0uuctdE2zU1Fe-eNWJkD0h&ust=1741583258061000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKD_7qud_IsDFQAAAAAdAAAAABAE
+    Anna Karanina: https://www.google.com/url?sa=i&url=https%3A%2F%2Ffourthandsycamore.wordpress.com%2F2018%2F07%2F11%2Fbook-review-anna-karenina-by-leo-tolstoy%2F&psig=AOvVaw26FY0BpIGDs4xH_hDfa1kG&ust=1741583289183000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKDC876d_IsDFQAAAAAdAAAAABAE
+    The Brother Karamazov: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FBrothers-Karamazov-Fyodor-Dostoyevsky%2Fdp%2F0140449248&psig=AOvVaw0IK2JeYeOlwg0nrI6QUflC&ust=1741583321532000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKD04syd_IsDFQAAAAAdAAAAABAK
+    Catch-22: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.penguin.com.au%2Fbooks%2Fcatch-22-9781784875848&psig=AOvVaw0UVTxlMUduB__kR82H0FT4&ust=1741583412856000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNjZy_Wd_IsDFQAAAAAdAAAAABAE
+    Midnight's children: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FMidnights-Children-Salman-Rushdie%2Fdp%2F0099582074&psig=AOvVaw2dUVdW8exLCoIepyM9fc__&ust=1741583434006000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKjr1v-d_IsDFQAAAAAdAAAAABAE
+    Crime and Punishment: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FCrime-Punishment-Translation-Fyodor-Dostoevsky%2Fdp%2F1631495313&psig=AOvVaw2T_khv0faBKQbGgzrPGLYV&ust=1741583457298000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNDx9Iqe_IsDFQAAAAAdAAAAABAE
+    Mrs. Dalloway: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FMrs-Dalloway-Annotated-Contemporary-Biography-ebook%2Fdp%2FB0CD8D4MJM&psig=AOvVaw32DqRVLTk3nVorpKftnF1B&ust=1741583486644000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPiUqpme_IsDFQAAAAAdAAAAABAE
+    The Divine Comedy: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FDivine-Comedy-Dante-Alighieri%2Fdp%2F0143107194&psig=AOvVaw1gMwSukVDZNEPn9eoxUTQY&ust=1741583508853000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMjBrKOe_IsDFQAAAAAdAAAAABAE
+    Things Fall Apart: https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FThings_Fall_Apart&psig=AOvVaw0KD-QqjeNSb1xAbUTrISw4&ust=1741583530917000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMib666e_IsDFQAAAAAdAAAAABAE
+    Huckleberry Finn: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FAdventures-Huckleberry-Finn-Authoritative-Illustrations%2Fdp%2F0520343646&psig=AOvVaw2onFAma7u4FUNxtiFbeVrr&ust=1741583562241000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIC76Lye_IsDFQAAAAAdAAAAABAE
+    Frankenstein: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.simonandschuster.com.au%2Fbooks%2FFrankenstein%2FMary-Wollstonecraft-Shelley%2F9781982146177&psig=AOvVaw0YK3bsixkBo5wexCa-5fWO&ust=1741583585407000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPjyzsie_IsDFQAAAAAdAAAAABAJ
+    The Sound and The Fury: https://www.google.com/url?sa=i&url=https%3A%2F%2Fbiblio.com.au%2Fbook%2Fsound-fury-faulkner-william-cover-art%2Fd%2F1539235618&psig=AOvVaw1qLPdXPBbMU5O56CtKsemk&ust=1741583610668000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDT5tSe_IsDFQAAAAAdAAAAABAE
+    Grapes of Wrath: https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FThe_Grapes_of_Wrath&psig=AOvVaw3hWY0rfvVq5kuiJCeNCKYI&ust=1741583637276000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLjlyeCe_IsDFQAAAAAdAAAAABAE
+    Great Expectations: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.booktopia.com.au%2Fgreat-expectations-charles-dickens%2Fbook%2F9781435167193.html&psig=AOvVaw2IMRo20b5bVM24N_fiBvj2&ust=1741583657956000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPDDvuqe_IsDFQAAAAAdAAAAABAE
+    Great Gastby: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.jpbooks.com.au%2Fbook.aspx%3FISBN%3D9780141182636&psig=AOvVaw2QQhMaj2c2l6CVt7W1Pajm&ust=1741583673795000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKjnmfWe_IsDFQAAAAAdAAAAABAE
+    Heart of Darkness: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.penguin.com.au%2Fbooks%2Fheart-of-darkness-9780143106586&psig=AOvVaw3-s95z2hMQso99uBtdvsnV&ust=1741583706582000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCICcx4Kf_IsDFQAAAAAdAAAAABAE
+    The Iliad: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.simonandschuster.com.au%2Fbooks%2FThe-Iliad%2FHomer%2F9781416540151&psig=AOvVaw376V4pFTlOLpZ4zrVlnkoe&ust=1741583724696000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJCaoIqf_IsDFQAAAAAdAAAAABAE
+    The Invisible Man: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FInvisible-Man-H-G-WELLS%2Fdp%2F0486270718&psig=AOvVaw2bANIfYCLucXKbAx6s8wGh&ust=1741583742390000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPiW35Kf_IsDFQAAAAAdAAAAABAE
+    jane Eyre: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.swiftfit.net%2Fblog%2Fbook-of-the-month-jane-eyre&psig=AOvVaw1K9ZthJS_Y-DmETBmc6PSX&ust=1741583758131000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNCO0J6f_IsDFQAAAAAdAAAAABAE
+    To the Lighthouse: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FLighthouse-WOOLF-VIRGINIA%2Fdp%2F1853260916&psig=AOvVaw1WymI57t51eFvv1Q-vWCec&ust=1741583791707000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIjTnaqf_IsDFQAAAAAdAAAAABAE
+    Lolita: https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FLolita&psig=AOvVaw39I6VTa2vLIgaSPJADzUJF&ust=1741583806411000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOj3m7Gf_IsDFQAAAAAdAAAAABAE
+    In search of lost time: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FSearch-Lost-Time-volumes-ebook%2Fdp%2FB07QC72MTB&psig=AOvVaw1zcKq9CkYqyx7sJMpWil9a&ust=1741583821536000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMCm3bif_IsDFQAAAAAdAAAAABAE
+    Madame Bovary: https://www.google.com/url?sa=i&url=https%3A%2F%2Fgeoffwhaley.com%2F2011%2F09%2F02%2Fmadame-bovary-gustave-flaubert%2F&psig=AOvVaw3caAgCPbpreoIUb5Htyl3K&ust=1741583843440000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMDzw8af_IsDFQAAAAAdAAAAABAE
+    The Master and Magarita: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FMaster-Margarita-Mikhail-Bulgakov%2Fdp%2F0099540940&psig=AOvVaw35UisFCtzNcUn2h04CHqF3&ust=1741583874940000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMDo-dGf_IsDFQAAAAAdAAAAABAE
+    Middlemarch: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.booktopia.com.au%2Fmiddlemarch-george-eliot%2Fbook%2F9780141439549.html&psig=AOvVaw2FYrZnATi9kSudXcv0BVbE&ust=1741583901763000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPDmqbLg_IsDFQAAAAAdAAAAABAE
+    Les Miserables: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.simonandschuster.com.au%2Fbooks%2FLes-Miserables%2FVictor-Hugo%2FLeather-bound-Classics%2F9781626864641&psig=AOvVaw0Wv7QFori2HhSLUrpgVGGk&ust=1741601280905000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIib777g_IsDFQAAAAAdAAAAABAE
+    To Kill A Mockingbird: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FKill-Mockingbird-Harper-Lee%2Fdp%2F0060935464&psig=AOvVaw0W3zxW5APqr3hmjSm1qOAU&ust=1741601304356000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPj6i8zg_IsDFQAAAAAdAAAAABAE
+    The Magic Mountain: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FMagic-Mountain-Thomas-Mann-ebook%2Fdp%2FB07SDB72PX&psig=AOvVaw0SvvgO9-W_GlA17V8HH5Mg&ust=1741601332187000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLiq7dfg_IsDFQAAAAAdAAAAABAE
+    The Odyssey: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FOdyssey-Homer%2Fdp%2F145167418X&psig=AOvVaw3oEoRS4dJBq6WYhtO2PaYT&ust=1741601354474000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDn_uLg_IsDFQAAAAAdAAAAABAE
+    Pride and Prejudice: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FPride-Prejudice-Jane-Austen-ebook%2Fdp%2FB0BS1KYZB6&psig=AOvVaw1lhPC63eTjv1Mkl_R1RtTT&ust=1741601376381000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPif8Ozg_IsDFQAAAAAdAAAAABAE
+    Don Quixote: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FDon-Quixote-Paperback-MAPLE-PRESS%2Fdp%2F9352230809&psig=AOvVaw3_iybluBduic02dz4h_b0v&ust=1741601395638000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMD0sfXg_IsDFQAAAAAdAAAAABAE
+    The Red and The Black: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FRed-Black-Stendhal%2Fdp%2F0140447644&psig=AOvVaw2AY7lRNY5mdpfI8zfuH52T&ust=1741601415310000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPD94f7g_IsDFQAAAAAdAAAAABAE
+    The Lord of the Rings: https://www.google.com/url?sa=i&url=https%3A%2F%2Fbookgrocer.com%2Fproducts%2F9780008537722-the-fellowship-of-the-ring-the-lord-of-the-rings-book-1&psig=AOvVaw0yaszmAHXzkoxJ8sWC88Zu&ust=1741601435937000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIDKmInh_IsDFQAAAAAdAAAAABAE
+    On The Road: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FOn-the-Road%2Fdp%2F0140283293&psig=AOvVaw2aAQxLPcBFBwdJOp47eLrs&ust=1741601455646000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMC0mZLh_IsDFQAAAAAdAAAAABAE
+    The Catcher in the Rye: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Ftopic%2FThe-Catcher-in-the-Rye&psig=AOvVaw0SkIsprZPkTxBiimfblwdi&ust=1741601473989000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNjLu5_h_IsDFQAAAAAdAAAAABAE
+    One Hundred Years or Solitude: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.harryhartog.com.au%2Fproducts%2Fone-hundred-years-of-solitude-gabriel-garcia-marquez-9780241968581&psig=AOvVaw3EqX5QQP65PP_wup706SKh&ust=1741601505073000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLCw4qnh_IsDFQAAAAAdAAAAABAE
+    The Stranger: https://www.google.com/url?sa=i&url=https%3A%2F%2Fbiblio.com.au%2Fbook%2Fstranger-albert-camus%2Fd%2F1321297475&psig=AOvVaw3bM_zYNeBmk21NKt2WeO1W&ust=1741601525243000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOjiu7Ph_IsDFQAAAAAdAAAAABAE
+    The Sun Also Rises: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FSun-Also-Rises-Ernest-Hemingway%2Fdp%2F0743297334&psig=AOvVaw1rXny29GPQfifHYEwky3nc&ust=1741601540672000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJC9yrrh_IsDFQAAAAAdAAAAABAE
+    One Thousand and One Arabian Nights: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com.au%2FOne-Thousand-Arabian-Nights%2Fdp%2F0192750135&psig=AOvVaw1h45Slpj74l_ML8JNZhPry&ust=1741601565265000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMD0uMbh_IsDFQAAAAAdAAAAABAE
+    The Trial: https://books.google.com/books/about/The_Trial.html?id=-qbotwAACAAJ
+    Ulysses: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.audible.com.au%2Fpd%2FUlysses-Audiobook%2FB00FQI63IO&psig=AOvVaw01LQrdcpYfkKIl9M-YpHte&ust=1741601613509000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLixpt3h_IsDFQAAAAAdAAAAABAE
+    War and Peace: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.harpercollins.ca%2F9780007396993%2Fwar-and-peace-original-version%2F&psig=AOvVaw34wzQtis1t_2mge2b5OE08&ust=1741601629673000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNC13fPh_IsDFQAAAAAdAAAAABAE
+    Wuthering Heights: https://www.google.com/url?sa=i&url=https%3A%2F%2Fclassic-literature.fandom.com%2Fwiki%2FWuthering_Heights&psig=AOvVaw1EANU_oMuaQeOCRg213-FN&ust=1741601676471000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIjS3oDi_IsDFQAAAAAdAAAAABAE
+
+
+
 

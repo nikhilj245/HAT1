@@ -10,16 +10,15 @@
 
     <script>
         function applySettings() {
-        if (localStorage.getItem("lightMode") === "enabled") {
-            document.body.classList.add("light-modestorage");
-            document.body.classList.remove("dark-modestorage");
-            document.body.className = "light-modestorage";
-        } else {
-            document.body.classList.add("dark-modestorage");
-            document.body.classList.remove("light-modestorage");
-            document.body.className = "dark-modestorage";
-    
-        }
+            if (localStorage.getItem("lightMode") === "enabled") {
+                document.body.classList.add("light-modestorage");
+                document.body.classList.remove("dark-modestorage");
+                document.body.className = "light-modestorage";
+            } else {
+                document.body.classList.add("dark-modestorage");
+                document.body.classList.remove("light-modestorage");
+                document.body.className = "dark-modestorage";
+            }
         }
         applySettings();
     </script>
@@ -28,27 +27,24 @@
         <ul>
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('bookCatalogue') }}">Book Catalogue</a></li>
-            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
             <li><a href="{{ url_for('settings') }}">Settings</a></li>
             <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
         </ul>
     </nav>
 
-
     <h2>Book Info</h2>
     <div class="container1">
         <img src="{{ url_for('static', filename=image) }}" alt="{{ title }}">
         <div class="content">
-            <p>ISBN: {{ isbn }}</p>
-            <p>Title: {{ title }}</p>
-            <p>Description: {{ description }}</p>
-            <p>Author: {{ author }}</p>
-            <p>Genre: {{ genre }}</p>
-            <p>Rating: {{ rating }}</p>
-            <p>Publication Year: {{ publication_year }}</p>
+            <p><strong>ISBN:</strong> {{ isbn }}</p>
+            <p><strong>Title:</strong> {{ title }}</p>
+            <p><strong>Description:</strong> {{ description }}</p>
+            <p><strong>Author:</strong> {{ author }}</p>
+            <p><strong>Genre:</strong> {{ genre }}</p>
+            <p><strong>Rating:</strong> {{ rating }}</p>
+            <p><strong>Publication Year:</strong> {{ publication_year }}</p>
         </div>
     </div>
-
 
 </body>
 </html>

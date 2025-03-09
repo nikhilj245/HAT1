@@ -1,39 +1,50 @@
-.light-modestorage{
+/* Light Mode Variables */
+.light-modestorage {
     --bg-color: white;
     --text-color: black;
     --darkmode-bg-color: white;
     --signup-bg-color: white;
     --login-bg-color: white;
+    --sidebar-bg-color: white;
 }
 
-.dark-modestorage{
+
+/* Dark Mode Variables */
+.dark-modestorage {
     --bg-color: black;
     --text-color: white;
     --darkmode-bg-color: black;
     --signup-bg-color: rgba(255, 255, 255, 0.13);
     --login-bg-color: rgba(255, 255, 255, 0.13);
+    --sidebar-bg-color: rgba(255, 255, 255, 0.1);
 }
 
 
-
-/* For navigation bar and general body styling */
-
+/* Body Styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: var(--bg-color); 
+    background-color: var(--bg-color);
     color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 
+/* Reset for all elements */
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
 
-
-
+/*Navigation bar*/
 nav {
-    background-color: #333; /*change this*/
+    background-color: #333;
     padding: 10px 0;
 }
 
@@ -50,88 +61,85 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white; /*change this*/
+    color: white;
     text-decoration: none;
     font-size: 18px;
 }
 
 nav ul li a:hover {
-    background-color: blue; /*change this*/
+    background-color: blue;
     font-size: 18px;
-    color: black; /*change this*/
+    color: black;
 }
 
 
-/* For the signup and sign in page */
-*,
-*:before,
-*:after{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-.background{
+/*Signup and login forms*/
+/* Background shapes for forms (the circles on signup and login pages)*/
+.background {
     width: 430px;
     height: 520px;
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
 }
-.background .shape{
+
+.background .shape {
     height: 200px;
     width: 200px;
     position: absolute;
     border-radius: 50%;
 }
-.shape:first-child{
-    background: linear-gradient(
-        #1845ad,
-        #23a2f6
-    );
+
+.shape:first-child {
+    background: linear-gradient(#1845ad, #23a2f6);
     left: -80px;
     top: 20px;
 }
-.shape:last-child{
-    background: linear-gradient(
-        to right,
-        #ff512f,
-        #f09819
-    );
+
+.shape:last-child {
+    background: linear-gradient(to right, #ff512f, #f09819);
     right: -50px;
     bottom: -70px;
 }
-form.signup{
+
+
+/* Signup Form Styling */
+form.signup {
     height: 530px;
     width: 400px;
-    background-color: var(--signup-bg-color); 
+    background-color: var(--signup-bg-color);
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     top: 55%;
     left: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
-}
-form.login{
-    height: 380px;
-    width: 400px;
-    background-color: var(--login-bg-color); /*change this*/
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 55%;
-    left: 50%;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
 }
 
-form h3{
+
+/* Login Form Styling */
+form.login {
+    height: 380px;
+    width: 400px;
+    background-color: var(--login-bg-color);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 55%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+}
+
+
+/* Form Heading */
+form h3 {
     transform: translate(0%, -30%);
     font-size: 32px;
     font-weight: 1000;
@@ -139,21 +147,33 @@ form h3{
     text-align: center;
 }
 
-input{
+
+/* Input Fields */
+input {
     display: block;
     height: 50px;
     width: 100%;
-    background-color: rgba(255,255,255,0.07);
+    background-color: rgba(255, 255, 255, 0.07);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 20px;
     font-size: 14px;
     font-weight: 400;
 }
-::placeholder{
+
+
+/* Placeholder Text for light and dakr modes*/
+.dark-modestorage ::placeholder {
     color: #e5e5e5;
 }
-button{
+
+.light-modestorage ::placeholder {
+    color: rgb(105, 105, 105);
+}
+
+
+/* Buttons */
+button {
     margin-top: 30px;
     width: 100%;
     background-color: #ffffff;
@@ -164,96 +184,249 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
-button:hover{
-    background-color: #f0f0f0;
+
+button:hover {
+    background-color: #d0d0d0;
 }
+
+
+/*Bookinfo page styling*/
 .container1 {
     display: flex;
-    align-items: start; 
-  }
-.image {
-    width: 200px; 
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container1 img {
+    max-width: 100%;
     height: auto;
-    margin-right: 20px; 
-  }
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
 .content {
-    flex: 1; 
+    width: 100%;
+    max-width: 800px;
     text-align: left;
-  }
+    background-color: var(--signup-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content p {
+    margin: 10px 0;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.content p strong {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+/* Responsive Design for Book Info Page (applies these settings if the viewport width is at least 768 pixels wide)*/
+@media (min-width: 768px) {
+    .container1 {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .container1 img {
+        max-width: 300px;
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+}
 
 
-
-  .header-container {
+/*Header and filter buttons*/
+.header-container {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centers the title */
-    position: relative;
+    justify-content: center;
+    padding: 20px;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--text-color);
 }
 
 .header-container .btn {
-    width: 300px;
+    width: 150px;
     height: 40px;
-    left: 100px;
-    top: -30px;
-    position: absolute;
-}
-
-h1 {
-    text-align: center;
-    flex-grow: 1; /* Ensures it remains centered */
-}
-
-.sidebar {
-    width: 300px; /* Adjust width */
-    position: absolute;
-    top: 90px; /* Adjust based on title position */
-    left: 100px;
-    padding: 10px;
-    background: var(--bg-color);
-    color: green;
+    background-color: #007BFF;
+    color: white;
+    border: none;
     border-radius: 5px;
-    display: none;
-    z-index: 1000;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.header-container .btn:hover {
+    background-color: #0056b3;
 }
 
 
+/*Sidebar filter styling*/
+.sidebar {
+    width: 250px;
+    position: fixed;
+    top: 80px;
+    left: -250px;
+    padding: 20px;
+    background-color: var(--sidebar-bg-color);
+    border-right: 1px solid var(--text-color);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s;
+    z-index: 1000;
+    overflow-y: auto;
+    max-height: calc(100vh - 100px);
+}
 
 .sidebar.active {
-    display: block;
+    left: 0;
+}
+
+.sidebar form {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar input[type="checkbox"] {
+    margin: 10px 0;
+}
+
+.sidebar button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.sidebar button[type="submit"]:hover {
+    background-color: #218838;
 }
 
 
-
+/*Catalogue grid styling*/
 .container {
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    background-color: var(--bg-color); /*change*/
-    padding: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--bg-color);
 }
 
 .container > div {
-    background-color: var(--signup-bg-color); /*change*/
-    border: 1px solid black;
-    margin: 20px;
-    font-size: 30px;
+    background-color: var(--signup-bg-color);
+    border: 1px solid var(--text-color);
+    border-radius: 10px;
+    padding: 15px;
     text-align: center;
-    width: 265px;
-    height: 565px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.MoreInfoButton{
-    background-color: #f44336;
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-.MoreInfoButton:hover{
-    background-color: red;
+.container > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .imgcontainer {
-    height: 400px;
+    height: 300px;
     overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.imgcontainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.MoreInfoButton {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.MoreInfoButton:hover {
+    background-color: #0056b3;
+}
+
+
+/*Modifying styling if its dark mode*/
+.dark-modestorage .sidebar {
+    border-right-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-modestorage .container > div {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/*Styling for settings page*/
+.settings-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--signup-bg-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.settings-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.toggle-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Dark Mode Adjustments for Settings Page */
+.dark-modestorage .settings-container {
+    background-color: var(--login-bg-color);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.dark-modestorage .toggle-button {
+    background-color: #28a745;
+}
+
+.dark-modestorage .toggle-button:hover {
+    background-color: #218838;
 }

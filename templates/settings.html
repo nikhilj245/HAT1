@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    
     <nav>
         <ul>
             <div id="nocookie" style="display: none;">
@@ -15,7 +14,6 @@
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
                     <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
                     <li><a href="{{ url_for('settings') }}">Settings</a></li>
                 </ul>
             </div>
@@ -24,7 +22,6 @@
                 <ul>
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('bookCatalogue') }}">Book Catalogue</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
                     <li><a href="{{ url_for('settings') }}">Settings</a></li>
                     <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
                 </ul>
@@ -32,11 +29,11 @@
         </ul>
     </nav>
 
+    <div class="settings-container">
+        <h2>Settings</h2>
+        <button id="toggle-light-mode" class="toggle-button">Toggle Light/Dark Mode</button>
+    </div>
 
-    <h2>Settings</h2>
-    <button id="toggle-light-mode">Toggle Light/Dark Mode</button>
-    
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
 </body>
 </html>

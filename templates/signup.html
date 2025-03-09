@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-
     <script>
         function applySettings() {
         if (localStorage.getItem("lightMode") === "enabled") {
@@ -30,7 +29,6 @@
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('login') }}">Log In</a></li>
             <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
-            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
             <li><a href="{{ url_for('settings') }}">Settings</a></li>
         </ul>
     </nav>
@@ -51,7 +49,6 @@
             <p style="color: red;">{{ error }}</p>
         {% endif %}
     </form>
-
 
 </body>
 </html>
