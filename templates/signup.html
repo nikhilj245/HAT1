@@ -9,21 +9,22 @@
 </head>
 <body>
     <script>
+        // Apply theme settings based on the value stored in localStorage
         function applySettings() {
-        if (localStorage.getItem("lightMode") === "enabled") {
-            document.body.classList.add("light-modestorage");
-            document.body.classList.remove("dark-modestorage");
-            document.body.className = "light-modestorage";
-        } else {
-            document.body.classList.add("dark-modestorage");
-            document.body.classList.remove("light-modestorage");
-            document.body.className = "dark-modestorage";
-
+            // If light mode is enabled, add the light theme class and remove the dark theme class
+            if (localStorage.getItem("lightMode") === "enabled") {
+                document.body.classList.add("light-modestorage");
+                document.body.classList.remove("dark-modestorage");
+            } else {
+                // If dark mode is enabled, add the dark theme class and remove the light theme class
+                document.body.classList.add("dark-modestorage");
+                document.body.classList.remove("light-modestorage");
+            }
         }
-        }
-        applySettings();
+        applySettings()
     </script>
 
+    <!--Navigation Bar-->
     <nav>
         <ul>
             <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -33,6 +34,7 @@
         </ul>
     </nav>
 
+    <!--The decorative circles on the signup page-->
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>

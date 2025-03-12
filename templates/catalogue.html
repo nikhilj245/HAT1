@@ -9,36 +9,39 @@
 <body>
 
     <script>
+        // Apply theme settings based on the value stored in localStorage
         function applySettings() {
-        if (localStorage.getItem("lightMode") === "enabled") {
-            document.body.classList.add("light-modestorage");
-            document.body.classList.remove("dark-modestorage");
-            document.body.className = "light-modestorage";
-        } else {
-            document.body.classList.add("dark-modestorage");
-            document.body.classList.remove("light-modestorage");
-            document.body.className = "dark-modestorage";
-    
+            // If light mode is enabled, add the light theme class and remove the dark theme class
+            if (localStorage.getItem("lightMode") === "enabled") {
+                document.body.classList.add("light-modestorage");
+                document.body.classList.remove("dark-modestorage");
+            } else {
+                // If dark mode is enabled, add the dark theme class and remove the light theme class
+                document.body.classList.add("dark-modestorage");
+                document.body.classList.remove("light-modestorage");
+            }
         }
-        }
-        applySettings();
+        applySettings()
     </script>
 
+    <!--Navigation bar-->
     <nav>
         <ul>
             <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('bookCatalogue') }}">Book Catalogue</a></li>
+            <li><a href="{{ url_for('book_catalogue') }}">Book Catalogue</a></li>
             <li><a href="{{ url_for('settings') }}">Settings</a></li>
             <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
         </ul>
     </nav>
 
+    <!--Sidebar on catalogue page-->
     <div class="header-container">
         <button class="btn btn-primary" onclick="toggleSidebar()">Filter</button>
     </div>
 
+    <!--All the different checkboxes for the sidebar (for the filter)-->
     <div id="sidebar" class="sidebar">
-        <form method="POST" action="{{ url_for('bookCatalogue') }}">
+        <form method="POST" action="{{ url_for('book_catalogue') }}">
             <input type="checkbox" name="genre" value="Graphic" {% if "Graphic" in selected_genres %} checked {% endif %}> Graphic<br>
             <input type="checkbox" name="genre" value="Gothic" {% if "Gothic" in selected_genres %} checked {% endif %}> Gothic<br>
             <input type="checkbox" name="genre" value="Fiction" {% if "Fiction" in selected_genres %} checked {% endif %}> Fiction<br>
@@ -66,7 +69,7 @@
     <div style="overflow: hidden;">
         <h7>{{row[1]}}</h7>
         <div class="imgcontainer"><img src="{{ url_for('static', filename=row[2]) }}" style="width: 280px;"></div>
-        <a class="MoreInfoButton" style="bottom: 0;" href="{{ url_for('bookInfo', isbn=row[0]) }}" target="_blank">More Information</a>
+        <a class="MoreInfoButton" style="bottom: 0;" href="{{ url_for('book_info', isbn=row[0]) }}" target="_blank">More Information</a>
     </div>
     {% endfor %}
 </div>

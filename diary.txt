@@ -54,6 +54,11 @@
 - Edited DirectoryStructure.png since there have been changes in file structure.
 - Edited Storyboard.png to better represent what my website looks like.
 
+12/03/2025
+- Added comments to most pages
+- Imported the Gantt chart
+- Added pylint test screenshots
+
 -------REFERENCES-------
 PYTHON REFERENCES:
     How I created decorators: https://www.freecodecamp.org/news/python-decorators-explained-with-examples/

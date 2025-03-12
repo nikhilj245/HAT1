@@ -1,152 +1,92 @@
-/*function disableButton(){
-    document.getElementById("submitBTN").disabled = true;
-}
-
-function Get_Cookie(name) {
-    var start = document.cookie.indexOf(name + "=");
-    if (start === -1) return null; 
-    var len = start + name.length + 1;
-    var end = document.cookie.indexOf(";", len);
-    if (end === -1) end = document.cookie.length;
-    return decodeURIComponent(document.cookie.substring(len, end));
-}
-
-function cookiecheck() {
-    var cookietest = Get_Cookie('access_token_cookie'); 
-
-    if (cookietest == null || cookietest.trim() === "") {
-        document.getElementById("nocookie").style.display = "block";
-        document.getElementById("cookie").style.display = "none";
-    } else {
-        document.getElementById("nocookie").style.display = "none";
-        document.getElementById("cookie").style.display = "block";
-    }
-}
-
-function toggleSidebar() {
-    var sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle('active');
-}
-
-document.addEventListener("DOMContentLoaded", cookiecheck());
-
-document.addEventListener("DOMContentLoaded", function () {
-    const lightModeToggle = document.getElementById("toggle-light-mode");
-
-    // Apply settings when the page loads
-    function applySettings() {
-        if (localStorage.getItem("lightMode") === "enabled") {
-            document.body.classList.add("light-modestorage");
-            document.body.classList.remove("dark-modestorage");
-            document.body.className = "light-modestorage";
-        } else {
-            document.body.classList.add("dark-modestorage");
-            document.body.classList.remove("light-modestorage");
-            document.body.className = "dark-modestorage";
-        }
-    }
-    applySettings();
-
-    // Toggle light/dark mode
-    if (lightModeToggle) {
-        lightModeToggle.addEventListener("click", function () {
-            if (document.body.classList.contains("light-modestorage")) {
-                document.body.classList.remove("light-modestorage");
-                document.body.classList.add("dark-modestorage");
-                localStorage.setItem("darkMode", "enabled");
-                localStorage.removeItem("lightMode");
-            } else {
-                document.body.classList.remove("dark-modestorage");
-                document.body.classList.add("light-modestorage");
-                localStorage.setItem("lightMode", "enabled");
-                localStorage.removeItem("darkMode");
-            }
-        });
-    }
-
-    window.addEventListener("storage", function (event) {
-        if (event.key === "lightMode" || event.key === "darkMode") {
-            console.log("localStorage change detected. Updating theme...");
-            applySettings(); // Reapply the theme
-        }
-    });
-
-});
-*/
-
-
-
-// Disable submit button on form submission
+// Disable submit button on form submission to prevent multiple submissions
 function disableButton() {
     document.getElementById("submitBTN").disabled = true;
 }
 
-// Check for cookies
+// Retrieve a specific cookie by name
 function Get_Cookie(name) {
+    // Find the starting index of the cookie name
     var start = document.cookie.indexOf(name + "=");
+    // If the cookie is not found, return null
     if (start === -1) return null;
+    // Calculate the starting index of the cookie value
     var len = start + name.length + 1;
+    // Find the end of the cookie value (either at the next semicolon or the end of the string)
     var end = document.cookie.indexOf(";", len);
     if (end === -1) end = document.cookie.length;
+    // Decode and return the cookie value
     return decodeURIComponent(document.cookie.substring(len, end));
 }
 
+// Check if the access token cookie exists and update the UI accordingly
 function cookiecheck() {
+    // Retrieve the access token cookie
     var cookietest = Get_Cookie('access_token_cookie');
+    // If the cookie is missing or empty, show the "nocookie" section and hide the "cookie" section
     if (cookietest == null || cookietest.trim() === "") {
         document.getElementById("nocookie").style.display = "block";
         document.getElementById("cookie").style.display = "none";
     } else {
+        // If the cookie exists, hide the "nocookie" section and show the "cookie" section
         document.getElementById("nocookie").style.display = "none";
         document.getElementById("cookie").style.display = "block";
     }
 }
 
-// Toggle sidebar
+// Toggle the visibility of the sidebar by adding/removing the 'active' class
 function toggleSidebar() {
     var sidebar = document.getElementById("sidebar");
     sidebar.classList.toggle('active');
 }
 
-// Apply theme settings
+// Apply theme settings based on the value stored in localStorage
 function applySettings() {
+    // If light mode is enabled, add the light theme class and remove the dark theme class
     if (localStorage.getItem("lightMode") === "enabled") {
         document.body.classList.add("light-modestorage");
         document.body.classList.remove("dark-modestorage");
     } else {
+        // If dark mode is enabled, add the dark theme class and remove the light theme class
         document.body.classList.add("dark-modestorage");
         document.body.classList.remove("light-modestorage");
     }
 }
 
-// Event listeners
+// Event listeners for DOMContentLoaded to initialize the page
 document.addEventListener("DOMContentLoaded", function () {
-    cookiecheck(); // Check cookies on page load
-    applySettings(); // Apply theme settings on page load
+    // Check for cookies when the page loads
+    cookiecheck();
 
-    // Toggle light/dark mode
+    // Apply theme settings when the page loads
+    applySettings();
+
+    // Toggle light/dark mode when the toggle button is clicked
     const lightModeToggle = document.getElementById("toggle-light-mode");
     if (lightModeToggle) {
         lightModeToggle.addEventListener("click", function () {
+            // If light mode is currently active, switch to dark mode
             if (document.body.classList.contains("light-modestorage")) {
                 document.body.classList.remove("light-modestorage");
                 document.body.classList.add("dark-modestorage");
+                // Update localStorage to reflect the new theme
                 localStorage.setItem("darkMode", "enabled");
                 localStorage.removeItem("lightMode");
             } else {
+                // If dark mode is currently active, switch to light mode
                 document.body.classList.remove("dark-modestorage");
                 document.body.classList.add("light-modestorage");
+                // Update localStorage to reflect the new theme
                 localStorage.setItem("lightMode", "enabled");
                 localStorage.removeItem("darkMode");
             }
         });
     }
 
-    // Listen for changes in localStorage
+    // Listen for changes in localStorage (so that on page load, it knows whether to display dark or light mode)
     window.addEventListener("storage", function (event) {
+        // If the lightMode or darkMode setting changes, reapply the theme
         if (event.key === "lightMode" || event.key === "darkMode") {
-            console.log("localStorage change detected. Updating theme...");
-            applySettings(); // Reapply the theme
+            applySettings();
         }
     });
 });

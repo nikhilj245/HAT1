@@ -6,9 +6,10 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 <body>
-
+    <!--Navigation Bar-->
     <nav>
         <ul>
+            <!--Only applies if user does not have access token in cookies-->
             <div id="nocookie" style="display: none;">
                 <ul>
                     <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -18,10 +19,11 @@
                 </ul>
             </div>
 
+            <!--Only applies if user has access token in cookies-->
             <div id="cookie" style="display: none;">
                 <ul>
                     <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('bookCatalogue') }}">Book Catalogue</a></li>
+                    <li><a href="{{ url_for('book_catalogue') }}">Book Catalogue</a></li>
                     <li><a href="{{ url_for('settings') }}">Settings</a></li>
                     <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
                 </ul>
