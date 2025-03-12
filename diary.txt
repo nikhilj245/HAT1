@@ -54,10 +54,30 @@
 - Edited DirectoryStructure.png since there have been changes in file structure.
 - Edited Storyboard.png to better represent what my website looks like.
 
-12/03/2025
+13/03/2025
 - Added comments to most pages
 - Imported the Gantt chart
 - Added pylint test screenshots
+- Added Lighthouse test screenshots
+- Edited DirectoryStructure.png
+
+PYLINT TESTING
+Screenshot1.png, score: 7.94/10
+ - Had to fix trailing white spaces
+ - Adding comments above functions (doc-strings)
+ - ordering the imports in the correct order
+ - Converting variable and function name to match snake case naming style.
+Screenshot2.png, score: 9.05/10
+ - Had to deleting else statements after return statements
+ - Reducing the sizes of some lines (some lines were too long) using black python code formatter
+ - Too many return statements in one function, had to add more conitional statements (IF statements) to reduce the number of return statements.
+Screenshot3.png, score: 9.95/10
+ - Some conditional statements had too many conditions in them, had to break it up into multiple conditional statements. 
+ - The only thing that could not be fixed was not being specific enough in my exception handling (line 59, app.py)
+
+LIGHTHOUSE TESTING
+ - Lighthouse performance testing got 99/100
+ - The LighthouseContinued.png has all the other information about the catalogue performance.
 
 -------REFERENCES-------
 PYTHON REFERENCES:
